@@ -39,7 +39,7 @@ Pentest Report Generator este o aplicație Streamlit pentru generarea de rapoart
   * CWEs
 
 ## Structură proiect
-
+```
 project/
 ├── app.py
 ├── run.py
@@ -60,7 +60,7 @@ project/
 ├── docx_generator.py
 ├── html_generator.py
 └── sections/
-
+```
 ## Cerințe
 
 * Python 3.11+
@@ -68,29 +68,29 @@ project/
 * mediu virtual recomandat
 
 ## Instalare
-
+```
 python -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
-
+```
 Pe Windows:
-
+```
 python -m venv venv
 venv\Scripts\activate
 pip install -r requirements.txt
-
+```
 ## Rulare locală
-
+```
 python run.py
-
+```
 sau direct:
-
+```
 streamlit run app.py
-
+```
 ## Build executabil
-
+```
 python build_exe.py
-
+```
 ## Date suportate în JSON
 
 Aplicația folosește un obiect principal `report_data` care poate conține:
@@ -196,11 +196,11 @@ HTML export include:
 Limbile sunt gestionate prin util/i18n.py
 
 Cheia principală din raport:
-
+```
 {
 "report_language": "en"
 }
-
+```
 Valori suportate:
 
 * en
@@ -213,11 +213,11 @@ Se traduc etichetele generate de sistem. Conținutul scris manual de utilizator 
 util/cvss_utils.py permite calcul automat al scorului CVSS din cvss_vector.
 
 Exemplu:
-
+```
 {
 "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
 }
-
+```
 Aplicația poate completa:
 
 * cvss
