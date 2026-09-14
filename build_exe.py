@@ -46,12 +46,23 @@ def build():
         "--hidden-import=python-docx",
         "--hidden-import=PIL",
         "--hidden-import=PIL._imaging",
+        "--hidden-import=pyarrow",
+        # Application modules (belt-and-suspenders; also shipped via --add-data)
+        "--hidden-import=util.control_mapper",
+        "--hidden-import=util.exec_conclusion",
+        "--hidden-import=util.methodology",
+        "--hidden-import=util.attack_chain",
+        "--hidden-import=util.legal_sections",
+        "--hidden-import=util.report_meta",
+        "--hidden-import=report.conclusion_generator",
+        "--hidden-import=ui.conclusion_tab",
 
         "--collect-all=reportlab",
         "--collect-all=python-docx",
         "--collect-all=pillow",
         "--collect-all=matplotlib",
         "--collect-all=streamlit",
+        "--collect-all=pyarrow",
     ]
 
     if os.path.exists(ICON_FILE):
