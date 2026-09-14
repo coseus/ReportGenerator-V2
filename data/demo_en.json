@@ -1,0 +1,590 @@
+{
+  "client": "Aurora Utilities Ltd.",
+  "provider": "E-INFRA",
+  "project": "Vulnerability Assessment - External perimeter (5 public IP addresses)",
+  "tester": "Cosmin Ivascu, Security Administrator",
+  "contact": "civ@einfra.ro",
+  "date": "2026-09-12",
+  "version": "1.0",
+  "registration_number": "AUR-VA-2026-014",
+  "test_type": "Grey Box",
+  "retest_date": "2026-10-15",
+  "security_posture": "weak",
+  "security_posture_retest": "balanced",
+  "methodology_intro": "The assessment aimed to identify, validate and evaluate Internet-exposed vulnerabilities using a combination of automated scanning and manual analysis, adapted to the services identified.\n\nResults were classified by potential impact and ease of exploitation to support remediation prioritization.",
+  "conclusion_intro": "The most important finding is the direct Internet exposure of administrative services and of an end-of-support software component.\n\nShould these systems be compromised, there is a risk of unauthorized data access and of pivoting toward the internal networks.\n\nAlthough no active exploitation was performed, the exposed attack surface exceeds the level recommended by security good practices.",
+  "conclusion_narrative": "The external-perimeter assessment of Aurora Utilities Ltd. identified an overall high risk level, driven by the exposure of administrative services and an unsupported software component.\n\nSix security findings were identified (1 critical, 2 high, 1 moderate, 1 low and 1 informational). Most can be remediated at the perimeter without application changes.",
+  "remediation_directions": [
+    {
+      "direction": "Remove public access to the administration console",
+      "intervention": "Perimeter configuration",
+      "urgency": "Immediate"
+    },
+    {
+      "direction": "Restrict RDP to VPN + MFA only",
+      "intervention": "Configuration + access process",
+      "urgency": "High"
+    },
+    {
+      "direction": "Migrate the end-of-support software component",
+      "intervention": "Project, with testing",
+      "urgency": "Planned"
+    },
+    {
+      "direction": "Verification scan after remediation",
+      "intervention": "Re-assessment",
+      "urgency": "After remediation"
+    }
+  ],
+  "test_period": "9 September 2026, 09:00 – 12 September 2026, 17:00 EEST",
+  "classification": "Confidential — limited distribution",
+  "executive_summary": "The external-perimeter vulnerability assessment of Aurora Utilities Ltd. covered five public IP addresses and their exposed services. Significant exposures were identified, including administrative services reachable directly from the Internet and unsupported software components. The overall risk level is high and requires priority remediation at the perimeter.",
+  "assessment_overview": "The objective was to identify and classify Internet-accessible vulnerabilities and exposures on the organization's external perimeter, together with a prioritized remediation plan.",
+  "assessment_details": "Grey Box assessment, with limited information provided by the client (IP list and service description). Testing covered service discovery, fingerprinting and vulnerability scanning, without active exploitation.",
+  "scope": "5 public IP addresses: 203.0.113.10, 203.0.113.11, 203.0.113.12, 198.51.100.7, 198.51.100.8. TCP ports 1-65535.",
+  "scope_exclusions": "UDP scanning, authenticated web application testing, social engineering, physical testing, internal perimeter.",
+  "client_allowances": "Testing was performed from the Internet, without allow-listing the scanning addresses. No credentials were provided. No maintenance windows were requested.",
+  "findings": [
+    {
+      "images": [
+        {
+          "data": "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",
+          "name": "nmap scan result"
+        }
+      ],
+      "hosts": [
+        "203.0.113.10"
+      ],
+      "ports": [
+        "1433/tcp"
+      ],
+      "cves": [
+        "CVE-2021-1636"
+      ],
+      "cwes": [
+        "CWE-1104"
+      ],
+      "likelihood": "High",
+      "tools_used": "Nmap, Nessus",
+      "references": "https://example.org/mssql-eol",
+      "protocol": "tcp",
+      "code": "PORT     STATE SERVICE\n1433/tcp open  ms-sql-s",
+      "status_note": "",
+      "status_date": "",
+      "title": "Unsupported SQL Server exposed directly to the Internet",
+      "severity": "Critical",
+      "cvss": "9.8",
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+      "description": "A database instance without security support is publicly accessible on port 1433.",
+      "impact": "Unauthorized data access and system compromise.",
+      "recommendation": "Remove public exposure and migrate to a supported version.",
+      "status": "present",
+      "exploitability": "easy",
+      "name": "Unsupported SQL Server exposed directly to the Internet",
+      "host": "203.0.113.10",
+      "port": "1433/tcp",
+      "cve": "CVE-2021-1636",
+      "cwe": "CWE-1104",
+      "categories": [
+        "Network Security",
+        "Vulnerability Management"
+      ],
+      "controls": {
+        "nis2": [
+          "21(2)(a)",
+          "21(2)(d)",
+          "21(2)(j)",
+          "21(2)(e)"
+        ],
+        "iso27001": [
+          "A.8.20",
+          "A.8.21",
+          "A.8.22",
+          "A.8.23",
+          "A.8.8",
+          "A.8.29"
+        ],
+        "nist_csf": [
+          "PR.IR-01",
+          "DE.CM-01",
+          "ID.RA-01",
+          "ID.RA-05",
+          "ID.RA-06"
+        ],
+        "nist_800_53": [
+          "SC-7",
+          "AC-4",
+          "SC-5",
+          "AC-18",
+          "RA-3",
+          "RA-5",
+          "CA-8"
+        ],
+        "iec62443": [
+          "SR 5.1",
+          "SR 5.2",
+          "SR 7.1",
+          "SR 3.4",
+          "SR 7.7"
+        ]
+      }
+    },
+    {
+      "images": [],
+      "hosts": [
+        "203.0.113.11",
+        "198.51.100.7"
+      ],
+      "ports": [
+        "3389/tcp"
+      ],
+      "cves": [],
+      "cwes": [
+        "CWE-284"
+      ],
+      "likelihood": "High",
+      "tools_used": "Nmap",
+      "references": "",
+      "protocol": "tcp",
+      "code": "",
+      "status_note": "Remediation in progress",
+      "status_date": "2026-09-20",
+      "title": "RDP exposed to the Internet on two systems",
+      "severity": "High",
+      "cvss": "8.1",
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N",
+      "description": "RDP services are publicly accessible, with no source network restrictions.",
+      "impact": "Entry point for credential attacks.",
+      "recommendation": "Restrict RDP to VPN with MFA only.",
+      "status": "open",
+      "exploitability": "medium",
+      "name": "RDP exposed to the Internet on two systems",
+      "host": "203.0.113.11",
+      "port": "3389/tcp",
+      "cve": "",
+      "cwe": "CWE-284",
+      "categories": [
+        "Network Security",
+        "Authentication",
+        "OT Remote Access"
+      ],
+      "controls": {
+        "nis2": [
+          "21(2)(a)",
+          "21(2)(d)",
+          "21(2)(j)",
+          "21(2)(i)"
+        ],
+        "iso27001": [
+          "A.8.20",
+          "A.8.21",
+          "A.8.22",
+          "A.8.23",
+          "A.5.17",
+          "A.8.5",
+          "A.6.7",
+          "A.5.14"
+        ],
+        "nist_csf": [
+          "PR.IR-01",
+          "DE.CM-01",
+          "PR.AA-01",
+          "PR.AA-02",
+          "PR.AA-03",
+          "DE.CM-06"
+        ],
+        "nist_800_53": [
+          "SC-7",
+          "AC-4",
+          "SC-5",
+          "AC-18",
+          "IA-2",
+          "IA-2(1)",
+          "IA-5",
+          "AC-7",
+          "AC-17",
+          "SC-10"
+        ],
+        "iec62443": [
+          "SR 5.1",
+          "SR 5.2",
+          "SR 7.1",
+          "SR 1.1",
+          "SR 1.5",
+          "SR 1.7",
+          "SR 1.11",
+          "SR 1.13",
+          "SR 2.6"
+        ]
+      }
+    },
+    {
+      "images": [],
+      "hosts": [
+        "198.51.100.8"
+      ],
+      "ports": [
+        "9001/tcp",
+        "443/tcp"
+      ],
+      "cves": [],
+      "cwes": [
+        "CWE-284"
+      ],
+      "likelihood": "",
+      "tools_used": "Nmap, testssl.sh",
+      "references": "",
+      "protocol": "tcp",
+      "code": "",
+      "status_note": "",
+      "status_date": "",
+      "title": "Firewall management console accessible from the Internet",
+      "severity": "High",
+      "cvss": "7.5",
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+      "description": "The security appliance management interface is publicly exposed.",
+      "impact": "Control over perimeter filtering if compromised.",
+      "recommendation": "Remove the management interface from the public interface.",
+      "status": "present",
+      "exploitability": "hard",
+      "name": "Firewall management console accessible from the Internet",
+      "host": "198.51.100.8",
+      "port": "9001/tcp",
+      "cve": "",
+      "cwe": "CWE-284",
+      "categories": [
+        "Network Security",
+        "Access Control"
+      ],
+      "controls": {
+        "nis2": [
+          "21(2)(a)",
+          "21(2)(d)",
+          "21(2)(j)",
+          "21(2)(i)"
+        ],
+        "iso27001": [
+          "A.8.20",
+          "A.8.21",
+          "A.8.22",
+          "A.8.23",
+          "A.5.15",
+          "A.5.16",
+          "A.5.18",
+          "A.8.2",
+          "A.8.3",
+          "A.8.18"
+        ],
+        "nist_csf": [
+          "PR.IR-01",
+          "DE.CM-01",
+          "PR.AA-01",
+          "PR.AA-05"
+        ],
+        "nist_800_53": [
+          "SC-7",
+          "AC-4",
+          "SC-5",
+          "AC-18",
+          "AC-2",
+          "AC-3",
+          "AC-5",
+          "AC-6",
+          "AC-17"
+        ],
+        "iec62443": [
+          "SR 5.1",
+          "SR 5.2",
+          "SR 7.1",
+          "SR 2.1",
+          "SR 1.3"
+        ]
+      }
+    },
+    {
+      "images": [],
+      "hosts": [
+        "203.0.113.10",
+        "198.51.100.8"
+      ],
+      "ports": [
+        "443/tcp"
+      ],
+      "cves": [],
+      "cwes": [
+        "CWE-327"
+      ],
+      "likelihood": "",
+      "tools_used": "testssl.sh",
+      "references": "",
+      "protocol": "tcp",
+      "code": "",
+      "status_note": "Remediated on 2026-09-18",
+      "status_date": "2026-09-18",
+      "title": "Deprecated TLS cipher suites enabled",
+      "severity": "Moderate",
+      "cvss": "5.3",
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+      "description": "TLS 1.0/1.1 and weak cipher suites accepted on HTTPS services.",
+      "impact": "Weakened traffic confidentiality.",
+      "recommendation": "Disable TLS 1.0/1.1 and weak suites; keep only modern AEAD suites.",
+      "status": "resolved",
+      "exploitability": "medium",
+      "name": "Deprecated TLS cipher suites enabled",
+      "host": "203.0.113.10",
+      "port": "443/tcp",
+      "cve": "",
+      "cwe": "CWE-327",
+      "categories": [
+        "Cryptography"
+      ],
+      "controls": {
+        "nis2": [
+          "21(2)(h)"
+        ],
+        "iso27001": [
+          "A.8.24",
+          "A.5.14"
+        ],
+        "nist_csf": [
+          "PR.DS-01",
+          "PR.DS-02"
+        ],
+        "nist_800_53": [
+          "SC-8",
+          "SC-12",
+          "SC-13",
+          "SC-28"
+        ],
+        "iec62443": [
+          "SR 4.1",
+          "SR 4.3",
+          "SR 3.1"
+        ]
+      }
+    },
+    {
+      "images": [],
+      "hosts": [
+        "203.0.113.12"
+      ],
+      "ports": [
+        "80/tcp"
+      ],
+      "cves": [],
+      "cwes": [
+        "CWE-200"
+      ],
+      "likelihood": "",
+      "tools_used": "curl, nikto",
+      "references": "",
+      "protocol": "tcp",
+      "code": "",
+      "status_note": "Risk accepted by the client",
+      "status_date": "2026-09-19",
+      "title": "System information disclosure via HTTP header",
+      "severity": "Low",
+      "cvss": "3.7",
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N",
+      "description": "The Server header discloses the web product version.",
+      "impact": "Facilitates fingerprinting by an attacker.",
+      "recommendation": "Hide or generalize the Server header.",
+      "status": "accepted",
+      "exploitability": "hard",
+      "name": "System information disclosure via HTTP header",
+      "host": "203.0.113.12",
+      "port": "80/tcp",
+      "cve": "",
+      "cwe": "CWE-200",
+      "categories": [
+        "Vulnerability Management"
+      ],
+      "controls": {
+        "nis2": [
+          "21(2)(e)"
+        ],
+        "iso27001": [
+          "A.8.8",
+          "A.8.29"
+        ],
+        "nist_csf": [
+          "ID.RA-01",
+          "ID.RA-05",
+          "ID.RA-06"
+        ],
+        "nist_800_53": [
+          "RA-3",
+          "RA-5",
+          "CA-8"
+        ],
+        "iec62443": [
+          "SR 3.4",
+          "SR 7.7"
+        ]
+      }
+    },
+    {
+      "images": [],
+      "hosts": [
+        "203.0.113.10",
+        "203.0.113.11",
+        "203.0.113.12"
+      ],
+      "ports": [
+        "2000/tcp",
+        "5060/tcp"
+      ],
+      "cves": [],
+      "cwes": [],
+      "likelihood": "",
+      "tools_used": "Nmap",
+      "references": "",
+      "protocol": "tcp",
+      "code": "",
+      "status_note": "",
+      "status_date": "",
+      "title": "Management ports reported open on all targets",
+      "severity": "Informational",
+      "cvss": "",
+      "cvss_vector": "",
+      "description": "Ports reported open that require confirmation.",
+      "impact": "Requires manual verification.",
+      "recommendation": "Confirm and close unused ports.",
+      "status": "open",
+      "exploitability": "hard",
+      "name": "Management ports reported open on all targets",
+      "host": "203.0.113.10",
+      "port": "2000/tcp",
+      "cve": "",
+      "cwe": "",
+      "categories": [
+        "Vulnerability Management"
+      ],
+      "controls": {
+        "nis2": [
+          "21(2)(e)"
+        ],
+        "iso27001": [
+          "A.8.8",
+          "A.8.29"
+        ],
+        "nist_csf": [
+          "ID.RA-01",
+          "ID.RA-05",
+          "ID.RA-06"
+        ],
+        "nist_800_53": [
+          "RA-3",
+          "RA-5",
+          "CA-8"
+        ],
+        "iec62443": [
+          "SR 3.4",
+          "SR 7.7"
+        ]
+      }
+    }
+  ],
+  "overall_risk": "Critical",
+  "attack_path": [
+    "External reconnaissance",
+    "Entry-point selection",
+    "Exposure analysis (no exploitation)"
+  ],
+  "remediation_short": [
+    "Remove public access to administrative services (RDP, firewall console).",
+    "Restrict administrative access to VPN with multi-factor authentication only."
+  ],
+  "remediation_medium": [
+    "Update cipher suites and disable deprecated TLS protocols.",
+    "Review perimeter and cloud filtering rules."
+  ],
+  "remediation_long": [
+    "Migrate end-of-support software components to supported versions.",
+    "Implement centralized monitoring (SIEM) with alerting on failed authentication attempts."
+  ],
+  "detailed_walkthrough": [
+    {
+      "name": "Reconnaissance and service discovery",
+      "description": "Full TCP scan of the 5 IP addresses, with version detection and default scripts.",
+      "code": "nmap -sS -sV -p- --reason -iL scope.txt -oA aurora_ext",
+      "images": [
+        {
+          "data": "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",
+          "name": "nmap extract"
+        }
+      ]
+    },
+    {
+      "name": "TLS fingerprinting and web service analysis",
+      "description": "Analysis of TLS configuration and security headers on exposed HTTPS services.",
+      "code": "testssl.sh --quiet 203.0.113.10:443",
+      "images": [
+        {
+          "data": "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",
+          "name": "testssl result"
+        }
+      ]
+    }
+  ],
+  "additional_reports": [
+    {
+      "name": "Nessus scan - summary",
+      "description": "Summary of the automated vulnerability scan (task ExternIPs).",
+      "code": "Total plugins: 128\nCritical: 1  High: 2  Medium: 2  Low: 1",
+      "images": []
+    },
+    {
+      "name": "SPF/DKIM/DMARC check",
+      "description": "Verification of e-mail configurations for the organization's domain.",
+      "code": "dig TXT aurora-utilities.example",
+      "images": [
+        {
+          "data": "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",
+          "name": "dig result"
+        }
+      ]
+    }
+  ],
+  "vuln_summary_counts": {
+    "Critical": 1,
+    "High": 2,
+    "Moderate": 1,
+    "Low": 1,
+    "Informational": 1
+  },
+  "vuln_summary_total": 6,
+  "vuln_by_host": {
+    "203.0.113.10": 3,
+    "203.0.113.11": 2,
+    "198.51.100.7": 1,
+    "198.51.100.8": 2,
+    "203.0.113.12": 2
+  },
+  "watermark_enabled": true,
+  "include_compliance": true,
+  "theme_hex": "#2E3B4E",
+  "logo_b64": "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",
+  "report_language": "en",
+  "control_frameworks": [
+    "nis2",
+    "iso27001",
+    "nist_csf",
+    "nist_800_53",
+    "iec62443"
+  ],
+  "contacts": [
+    {
+      "name": "Cosmin Ivascu",
+      "title": "Security Administrator",
+      "contact": "civ@einfra.ro",
+      "role": "Tester"
+    },
+    {
+      "name": "Jane Doe",
+      "title": "IT Manager",
+      "contact": "jane.doe@aurora-utilities.example",
+      "role": "Client"
+    }
+  ]
+}
